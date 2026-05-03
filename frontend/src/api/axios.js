@@ -14,7 +14,7 @@ api.interceptors.request.use((config) => {
         
     }
     return config;
-})
+});
 
 //Redirect to login on 401
 
