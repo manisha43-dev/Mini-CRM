@@ -17,7 +17,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5000",
-  "https://mini-crm-utc7.vercel.app/login" 
+  "https://mini-crm-utc7.vercel.app" 
 ];
 
 app.use(cors({origin:function(origin,callback){
