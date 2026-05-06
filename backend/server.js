@@ -16,7 +16,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-app.onrender.com" 
+  "https://mini-crm-utc7.vercel.app/login" 
 ];
 
 app.use(cors({origin:function(origin,callback){
