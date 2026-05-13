@@ -17,7 +17,12 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
+<<<<<<< HEAD
   "https://your-frontend-app.onrender.com" 
+=======
+  "http://localhost:5000",
+  "https://mini-crm-utc7.vercel.app" 
+>>>>>>> 29126c9851ad82f7d6ffb10df4ca479c10d58897
 ];
 
 app.use(cors({origin:function(origin,callback){
