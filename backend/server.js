@@ -37,7 +37,7 @@ app.use('/api/tasks',taskRoutes)
 app.use('/api/dashboard',dashboardRoutes)
 
 //Serve React build
-app.use(express.static(path.join(__dirname,'../client/dist')))
+app.use(express.static(path.join(__dirname,'../frontend/dist')))
 
 //Catch-all for React Router
 app.get('/{*splat}',(req,res)=>{
