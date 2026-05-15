@@ -1,6 +1,15 @@
+const dotenv=require('dotenv');
+dotenv.config();
+
+console.log("ENV CHECK:", {
+  MONGODB_URI: process.env.MONGODB_URI ? "✅ Found" : "❌ MISSING",
+  PORT: process.env.PORT ? "✅ Found" : "❌ MISSING",
+  JWT_SECRET: process.env.JWT_SECRET ? "✅ Found" : "❌ MISSING",
+});
+
+
 const express=require('express');
 const cors=require('cors');
-const dotenv=require('dotenv');
 const connectDB=require('./config/db')
 const authRoutes=require('./routes/authRoutes');
 const leadsRoutes=require('./routes/leadsRoutes');
@@ -9,7 +18,7 @@ const taskRoutes=require('./routes/taskRoutes');
 const dashboardRoutes=require('./routes/dashboardRoutes');
 const path=require('path')
 
-dotenv.config();
+
 connectDB();
 
 const app=express();
@@ -17,9 +26,9 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-app.onrender.com", 
   "http://localhost:5000",
-  "https://mini-crm-utc7.vercel.app" 
+  "https://mini-crm-utc7.vercel.app",
+  process.env.CLIENT_URL, 
 
 ];
 
@@ -44,7 +53,7 @@ app.use(express.static(path.join(__dirname,'../frontend/dist')))
 
 //Catch-all for React Router
 app.get('/{*splat}',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../froentend/dist','index.html'))
+    res.sendFile(path.join(__dirname,'../frontend/dist','index.html'))
 })
 
 //Global error handler
@@ -55,7 +64,7 @@ app.use((err,req,res,next)=>{
 
 
 
-const PORT=process.env.PORT
+const PORT=process.env.PORT || 5000
 
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`);
