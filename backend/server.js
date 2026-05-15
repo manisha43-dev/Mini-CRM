@@ -31,20 +31,30 @@ const allowedOrigins = [
 
 ];
 
-app.options('*', cors());
-
-app.use(cors({origin:true
-//     function(origin,callback){
-//     if(!origin || allowedOrigins.includes(origin)){
-//         callback(null,true)
-//     }
-//     else{
-//         callback(new Error("Not allowed by CORS"))
-//     }
-// }
-, credentials:true,
+const corsOptions = {
+  origin: true,
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],}));
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+
+
+// app.options('*', cors());
+
+// app.use(cors({origin:true
+// //     function(origin,callback){
+// //     if(!origin || allowedOrigins.includes(origin)){
+// //         callback(null,true)
+// //     }
+// //     else{
+// //         callback(new Error("Not allowed by CORS"))
+// //     }
+// // }
+// , credentials:true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
