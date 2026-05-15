@@ -48,13 +48,7 @@ app.use('/api/companies',companiesRoutes)
 app.use('/api/tasks',taskRoutes)
 app.use('/api/dashboard',dashboardRoutes)
 
-//Serve React build
-app.use(express.static(path.join(__dirname,'../frontend/dist')))
-
-//Catch-all for React Router
-app.get('/{*splat}',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../frontend/dist','index.html'))
-})
+app.get('/',(req,res)=>res.json({status:"API running"}))
 
 //Global error handler
 app.use((err,req,res,next)=>{  
